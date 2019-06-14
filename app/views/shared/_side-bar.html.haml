@@ -3,10 +3,14 @@
     %p.side-header__user-name
       =current_user.name
     .user-menu
-      =link_to "https://www.twitter.com/", class: "user-menu__edit-user fa-fw" do
-        = fa_icon 'edit' 
-      =link_to edit_user_path(current_user), class: "user-menu__new-group fa-fw" do
-        = fa_icon 'cog',class:'icon'
+      %li.list
+        = link_to new_group_path do
+          = fa_icon 'pencil-square-o', class: 'icon'
+      %li.list
+        = link_to edit_user_path(current_user) do
+          = fa_icon 'cog', class: 'icon'    
+
+
   .groups
     .group
       .group__name
