@@ -1,7 +1,8 @@
 .flash-box
 .wrapper
-  = render partial: 'shared/side-bar'
 
+  = render 'shared/side_bar'
+  
   .chat-main
     .main-header
       .main-header__left-box
@@ -35,11 +36,13 @@
             2019/6/10/18:56:10
         %p.message__text
           こんにちは！
+
     .form
-      %form
-        %input.form__message{placeholder: "type a message"}
-        .form__image-box
-          %label.form__image-box__image
-            = fa_icon 'picture-o'
-            %input.hidden{type: 'file',accept: "image/png, image/jpeg"}
-        %input.form__submit{type: 'submit', value: 'Send'}
+      -# = @group = Group.new unless @group
+      = form_for [@group, @message] do |f|
+        =f.text_field :content,class:'form__message',placeholder: 'type a message'
+        .form__message
+          =f.label :image,class: 'form__mask__image'  do
+            =fa_icon 'picture-o',class: 'icon'
+            = f.file_field :image, class: 'hidden'
+        =f.submit 'Send',class: 'form__submit'
