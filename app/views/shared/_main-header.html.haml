@@ -1,0 +1,16 @@
+.chat-main
+  .main-header
+    .main-header__left-box
+      %h2.main-header__left-box__current-group
+        testgroup
+      %ul.main-header__left-box__member-lists
+        Member：
+        %li.main-header__left-box__member-lists__list
+          田中
+        %li.main-header__left-box__member-lists__list
+          山田
+        %li.main-header__left-box__member-lists__list
+          坂本
+    =link_to "https://www.twitter.com/",class: "right-header" do
+      .right-header__button
+        Edit

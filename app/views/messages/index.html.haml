@@ -2,47 +2,17 @@
 .wrapper
 
   = render 'shared/side_bar'
-  
-  .chat-main
-    .main-header
-      .main-header__left-box
-        %h2.main-header__left-box__current-group
-          testgroup
-        %ul.main-header__left-box__member-lists
-          Member：
-          %li.main-header__left-box__member-lists__list
-            田中
-          %li.main-header__left-box__member-lists__list
-            山田
-          %li.main-header__left-box__member-lists__list
-            坂本
-      =link_to "https://www.twitter.com/",class: "right-header" do
-        .right-header__button
-          Edit
-    .messages
-      .message
-        .message__uper-info
-          %p.message__uper-info__talker
-            test-user
-          %p.message__uper-info__date
-            2019/6/10/18:56:10
-        %p.message__text
-          こんにちは！
-      .message
-        .message__uper-info
-          %p.message__uper-info__talker
-            test-user
-          %p.message__uper-info__date
-            2019/6/10/18:56:10
-        %p.message__text
-          こんにちは！
+  = render 'shared/main-header'
 
-    .form
-      -# = @group = Group.new unless @group
-      = form_for [@group, @message] do |f|
-        =f.text_field :content,class:'form__message',placeholder: 'type a message'
-        .form__message
-          =f.label :image,class: 'form__mask__image'  do
-            =fa_icon 'picture-o',class: 'icon'
-            = f.file_field :image, class: 'hidden'
-        =f.submit 'Send',class: 'form__submit'
+  .messages
+    = render @messages
+
+      
+  .form
+    = form_for [@group, @message] do |f|
+      =f.text_field :content,class:'form__message',placeholder: 'type a message'
+      .form__message
+        =f.label :image,class: 'form__mask__image'  do
+          =fa_icon 'picture-o',class: 'icon'
+          = f.file_field :image, class: 'hidden'
+      =f.submit 'Send',class: 'form__submit'
