@@ -12,7 +12,7 @@
     = form_for [@group, @message] do |f|
       =f.text_field :content,class:'form__message',placeholder: 'type a message'
       .form__message
-        =f.label :image,class: 'form__mask__image'  do
-          =fa_icon 'picture-o',class: 'icon'
+        =f.label :image,class: 'form__image-box'  do
+          =fa_icon 'picture-o',class: 'form__image-box__image'
           = f.file_field :image, class: 'hidden'
       =f.submit 'Send',class: 'form__submit'

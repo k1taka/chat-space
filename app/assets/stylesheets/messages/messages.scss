@@ -1,63 +1,5 @@
 .wrapper{
-  .chat-side{
-    width:300px;
-    height:calc(100vh - 124px);
-    color: $white;
-    float:left;
-    .side-header{
-      background-color: #253141;
-      height:100px;
-      width:260px;
-      padding:0px 20px;
-      line-height:100px;
-      display: flex;
-      justify-content: space-between;
 
-      &__user-name{
-        font-size:16px;
-        font-weight: bold;
-      }
-      .user-menu{
-        display: flex;
-        a{
-            color: $white;
-            list-style: none;
-        }
-        .list{
-          list-style: none;
-        }
-        &__edit-user{
-          color: $white;
-        }
-        &__new-group{
-          color: $white;
-        }        
-      }
-    }
-    .groups{
-      padding:20px 0px;
-      clear:both;
-      background-color: #2f3e51;
-      height:565px;
-      width:100%;
-      .group{
-        padding:0px 20px;
-        a{
-          color: $white;
-          text-decoration: none;
-        }        
-        &__name{
-          font-size: 15px;
-          padding-bottom:5px;
-        }
-      
-        &__latestmessage{
-          font-size: 11px;
-          padding-bottom:40px;
-        }
-       }
-    }
-  }
   .chat-main{
     width:calc(100vw - 300px);
     float:right;
@@ -104,12 +46,15 @@
     }
   }
     .messages{
+      padding-top:40px;
       background-color: #fafafa;
-      height:calc(100vh - 288px);
+      height:calc(100vh - 230px);
       width:calc(100vw - 300px);
-      padding: 46px 0px;
+      float:right;
+      
       .message{
         padding-left:40px;
+        
         &__uper-info{
           display: flex;
           &__talker{
@@ -127,52 +72,10 @@
         &__text{
           font-size:14px;
           color:#434A54;
-          padding:10px 0px 40px 0px;
+          padding:10px 0px 20px 0px;
           
         }
 
-      }
-    }
-    .form {
-      background-color: #DDDDDD;
-      box-sizing: border-box;
-      height: 90px;
-      padding: 20px 50px 20px 40px;
-      width:100%;
-      position: relative;
-      &__message {
-        border: none;
-        float: left;
-        height: 50px;
-        width: calc(100% - 130px);   
-        padding-left:10px;     
-        z-index:5;
-      }
-      &__image-box {
-        position:absolute;
-        left:calc(100% - 205px);
-        top:25px;
-        z-index:10;
-        background-color: $white;
-        height: 40px;
-        padding-right: 10px;
-        &__image {
-          font-size: 20px;
-          line-height: 40px;
-        }
-        .hidden {
-          display: none;
-        }
-      }
-      &__submit {
-        background-color:$lite-blue;
-        border: none;
-        color: $white;
-        float: right;
-        font-size: 16px;
-        height: 50px;
-        margin-left: 15px;
-        padding: 0 30px;
       }
     }
 
