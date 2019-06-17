@@ -1,6 +1,7 @@
 .wrapper{
 
   .chat-main{
+
     width:calc(100vw - 300px);
     float:right;
     position:relative;
@@ -46,6 +47,7 @@
     }
   }
     .messages{
+      overflow: scroll;
       padding-top:40px;
       background-color: #fafafa;
       height:calc(100vh - 230px);
@@ -53,6 +55,7 @@
       float:right;
       
       .message{
+
         padding-left:40px;
         
         &__uper-info{
