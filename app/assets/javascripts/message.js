@@ -2,6 +2,13 @@ $(function(){
   $('#new_message').on('submit', function(e){
     e.preventDefault();
     var formData = new FormData(this);
-    console.log(this)
+    var url = $(this).attr('action')
+    $.ajax({
+      url: url,
+      type: 'POST',
+      data: formData,
+      dataType: 'json',
+      processData: false,
+      contentType: false
   })
 })
