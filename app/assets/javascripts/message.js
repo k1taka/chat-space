@@ -11,7 +11,7 @@ $(function(){
                       ${message.user_name}
                     </p>
                     <p class="message__uper-info__date">
-                       ${message.created_at}
+                        ${message.data}
                     </p>
                   </div>
 
@@ -44,13 +44,11 @@ $(function(){
       .done(function(data){
         var html = buildHTML(data);
         $('.messages').append(html)
-        $('#message_content').val('')
-        $('#message_image').val('')
+        $('#new_message')[0].reset();
         $('.messages').animate({scrollTop: $('.messages')[0].scrollHeight}, 'fast');
-
       })
       .fail(function(){
-        alert('エラーが発生したためメッセージを送信することができませんでした。');
+        alert('メッセージを入力して下さい。');
       })
   })  
 });
