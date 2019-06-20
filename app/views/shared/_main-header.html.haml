@@ -8,6 +8,6 @@
         - @group.users.each do |user|
           %li.main-header__left-box__member-lists__list
             = user.name
-    =link_to "https://www.twitter.com/",class: "right-header" do
+    =link_to edit_group_path(@group) ,class: "right-header" do
       .right-header__button
         Edit

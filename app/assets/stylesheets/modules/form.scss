@@ -16,9 +16,9 @@
         z-index:5;
       }
       &__image-box {
-        position:absolute;
+        position:relative;
         left:calc(100% - 205px);
-        top:0px;
+        top:-45px;
         z-index:10;
         background-color: $white;
         height: 40px;
@@ -27,7 +27,8 @@
           font-size: 20px;
           line-height: 40px;
           position:absolute;
-          top:620px;
+          top:0px;
+          left:160px;
         }
         .hidden {
           display: none;
