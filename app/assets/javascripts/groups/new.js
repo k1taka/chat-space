@@ -1,14 +1,14 @@
 $(document).on('turbolinks:load', function(){
 
   var search_list = $("#user-search-result");
-
+  var selected_list = $(".chat-group-users");
 
   $(function() {
 
     function appendUser(user){
       var html = `<div class="chat-group-user clearfix">
                     <p class="chat-group-user__name">${user.name}</p>
-                    <div class="user-search-add chat-group-user__btn chat-group-user__btn--add" data-user-id=${user.id}data-user-name="${user.name}>追加</div>
+                    <div class="user-search-add chat-group-user__btn chat-group-user__btn--add" data-user-id="${user.id}"data-user-name="${user.name}">追加</div>
                   </div>`
       search_list.append(html);
     }
@@ -20,11 +20,14 @@ $(document).on('turbolinks:load', function(){
       search_list.append(html);
     }
 
-    function appendMsgToUser(msg){
-      var html = `<div class="chat-group-user clearfix">
-                    <p class="chat-group-user__name">${msg}</p>
-                  </div>`
-      search_list.append(html);
+    function appendSelectedName(user_id,user_name){
+      var html = `<div class='chat-group-user clearfix js-chat-member' id='chat-group-user-8'>
+                    <input name='group[user_ids][]' type='hidden' value=${user_id}>
+                    <p class='chat-group-user__name'>${user_name}</p>
+                    <div class='user-search-remove chat-group-user__btn chat-group-user__btn--remove js-remove-btn'>削除</div>
+                   </div>`            
+
+      selected_list.append(html);
     }
 
 
@@ -47,19 +50,43 @@ $(document).on('turbolinks:load', function(){
             });
           }
             else{
-              console.log("errror");
               appendErrMsgToUser(' 一致するユーザーが見つかりません');
             }
           })
         .fail(function() {
            alert('検索に失敗しました');
         });
-        
+       });
 
-    });
-    $(document).on('click','.chat-group-user__btn--add', function(){
-      console.log("moji") 
-   })
+      $(document).on('click','.chat-group-user__btn--add', function(){
+
+        var user_id = $(this).data('user-id');
+        var user_name = $(this).data('user-name');
+        console.log(user_id,user_name)
+        appendSelectedName(user_id, user_name);
+        $(this).parent().remove();
+
+     })
+     $(document).on('click','.user-search-remove',function(){
+      $(this).parent().remove();
+     })
+
+{/* <div class="chat-group-form__field--right">
+<!-- グループ作成機能の追加時はここにcollection_check_boxesの記述を入れてください -->
+<!-- この部分はインクリメンタルサーチ（ユーザー追加の非同期化のときに使用します -->
+<div class="chat-group-users"><div class="chat-group-user clearfix js-chat-member" id="chat-group-user-8">
+                    <input name="group[user_ids][]" type="hidden" value="3">
+                    <p class="chat-group-user__name">tanaka</p>
+                    <div class="user-search-remove chat-group-user__btn chat-group-user__btn--remove js-remove-btn">削除</div>
+                   </div></div>
+<div class="chat-group-user clearfix" id="chat-group-user-22"></div>
+<input name="chat_group[user_ids][]" type="hidden" value="22">
+<p class="chat-group-user__name">
+show
+</p>
+</div> */}
+
+
     
   });
 });
