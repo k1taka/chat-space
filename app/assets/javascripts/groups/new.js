@@ -28,7 +28,7 @@ $(document).on('turbolinks:load', function(){
                    </div>`            
       selected_list.append(html);
     }
-    
+
     $("#user-search-field").on("keyup", function(e) {
       var input = $("#user-search-field").val();
         $.ajax({
@@ -37,14 +37,11 @@ $(document).on('turbolinks:load', function(){
           data: { keyword: input },
           dataType: 'json'
         })
-        
         .done(function(users) {
           $("#user-search-result").empty();
           if (users.length !== 0) {
             users.forEach(function(user){
               appendUser(user);
-
-             
             });
           }
             else{
@@ -63,7 +60,7 @@ $(document).on('turbolinks:load', function(){
         appendSelectedName(user_id, user_name);
         $(this).parent().remove();
        })
-      
+
       $(document).on('click','.user-search-remove',function(){
         $(this).parent().remove();
       })  

@@ -6,7 +6,6 @@ class UsersController < ApplicationController
       format.html
       format.json
     end
-
   end
 
   def edit

@@ -1,10 +1,9 @@
-.message
+.message(data: {id: 'message.id'})
   .message__uper-info
     %p.message__uper-info__talker
       = message.user.name
     %p.message__uper-info__date
       = message.created_at.strftime('%Y/%m/%d %H:%M:%S')
-
   %p.message__text
     - if message.content.present?
       %p.message__text__content
