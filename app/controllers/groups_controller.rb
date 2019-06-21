@@ -23,7 +23,6 @@ class GroupsController < ApplicationController
     @users = @group.users.where.not(id: current_user.id)
   end
 
-  
   def update
     if @group.update(group_params)
       redirect_to group_messages_path(@group), notice: 'グループを編集しました'
