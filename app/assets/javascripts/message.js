@@ -15,7 +15,8 @@ $(function(){
                     </p>
                   </div>
                     <p class="message__text">
-                    </p><p class="message__text__content">
+                    </p>
+                    <p class="message__text__content">
                       ${content}
                     </p>
                       ${img}
@@ -50,12 +51,12 @@ $(function(){
     })  
 
     var reloadMessages = function() {
-      //カスタムデータ属性を利用し、ブラウザに表示fされている最新メッセージのidを取得
+
+      url = window.location.href
+      if(url.match(/\/groups\/\d+\/messages/)){
+
       var last_message_id = $('.message:last').data('id');
-
-
       var group_id = $('.chat-main').data('group-id')
-
 
       $.ajax({
         url: `/groups/${group_id}/api/messages`,
@@ -64,27 +65,21 @@ $(function(){
         data: {id: last_message_id}
       })
       .done(function(messages) {
-      //追加するHTMLの入れ物を作る
       var insertHTML = '';
-      //配列messagesの中身一つ一つを取り出し、HTMLに変換したものを入れ物に足し合わせる
+
       messages.forEach(function(message){
       var html = buildHTML(message);
       insertHTML += html;
-
       $(".messages").append(insertHTML);
-      // $(".messages").animate({scrollTop: $(".messages")[0].scrollHeight}, 'fast');
-      console.log('nomal');
+      $(".messages").animate({scrollTop: $(".messages")[0].scrollHeight}, 'fast');
       });
-      //メッセージが入ったHTMLを取得
-
-      //メッセージを追加
 
       })
       .fail(function() {
-        console.log('error');
+        alert('自動更新が失敗しました。');
       });
     };
+  }
     setInterval(reloadMessages, 5000);
-
    });
 });
