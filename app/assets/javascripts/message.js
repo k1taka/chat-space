@@ -4,24 +4,22 @@ $(document).on('turbolinks:load', function(){
 $(function(){
   function buildHTML(message){
     var content = message.content ? `${ message.content }` : "";
-    var img = message.image ? `<img src= ${ message.image } class="message__text__image">` : "";
-    var html = `<div class="message">
+    var img = message.image? `<img src= ${ message.image} class="message__text__image">` : "";
+    var html = `<div class="message" data-id= ${message.id}>
                   <div class="message__uper-info">
                     <p class="message__uper-info__talker">
                       ${message.user_name}
                     </p>
                     <p class="message__uper-info__date">
-                        ${message.data}
+                      ${message.created_at}
                     </p>
                   </div>
-
                     <p class="message__text">
                     </p><p class="message__text__content">
                       ${content}
                     </p>
                       ${img}
                 </div>`
-
     return html;
   }
 
@@ -40,7 +38,6 @@ $(function(){
       contentType: false
      })
 
-
       .done(function(data){
         var html = buildHTML(data);
         $('.messages').append(html)
@@ -50,7 +47,44 @@ $(function(){
       .fail(function(){
         alert('メッセージを入力して下さい。');
       })
-  })  
-});
+    })  
 
+    var reloadMessages = function() {
+      //カスタムデータ属性を利用し、ブラウザに表示fされている最新メッセージのidを取得
+      var last_message_id = $('.message:last').data('id');
+
+
+      var group_id = $('.chat-main').data('group-id')
+
+
+      $.ajax({
+        url: `/groups/${group_id}/api/messages`,
+        type: 'GET',
+        dataType: 'json',
+        data: {id: last_message_id}
+      })
+      .done(function(messages) {
+      //追加するHTMLの入れ物を作る
+      var insertHTML = '';
+      //配列messagesの中身一つ一つを取り出し、HTMLに変換したものを入れ物に足し合わせる
+      messages.forEach(function(message){
+      var html = buildHTML(message);
+      insertHTML += html;
+
+      $(".messages").append(insertHTML);
+      // $(".messages").animate({scrollTop: $(".messages")[0].scrollHeight}, 'fast');
+      console.log('nomal');
+      });
+      //メッセージが入ったHTMLを取得
+
+      //メッセージを追加
+
+      })
+      .fail(function() {
+        console.log('error');
+      });
+    };
+    setInterval(reloadMessages, 5000);
+
+   });
 });
